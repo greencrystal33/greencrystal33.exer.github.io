@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>表格</title>
+    <style>
+        .bg {
+            background-color: pink;
+        }
+    </style>
+</head>
+
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    <input type="checkbox" id="cbAll">
+                </th>
+                <th>代码</th>
+                <th>名称</th>
+                <th>数量</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <input type="checkbox">
+                </td>
+                <td>0001</td>
+                <td>测试1</td>
+                <td>1100</td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox">
+                </td>
+                <td>0002</td>
+                <td>测试2</td>
+                <td>2200</td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox">
+                </td>
+                <td>0003</td>
+                <td>测试3</td>
+                <td>3300</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        var body = document.querySelector('tbody');
+        var trs = body.querySelectorAll('tr');
+        for (var i = 0; i < trs.length; i++) {
+            trs[i].onmousemove = function () {  //鼠标经过
+                this.className = "bg";
+            }
+            trs[i].onmouseout = function () {  //鼠标离开
+                this.className = '';
+            }
+
+        }
+
+        // 全选
+        var cbAll = document.getElementById("cbAll");
+        // console.log(cbAll);
+        // var cbs = document.getElementsByTagName('input');
+        var cbs = document.querySelector('tbody').querySelectorAll('input');
+        // console.log(cbs);
+
+        cbAll.onclick = function () {
+            this.checked;
+            for (var i = 0; i < cbs.length; i++) {
+                cbs[i].checked = this.checked;
+            }
+        }
+
+        for (var i = 0; i < cbs.length; i++) {
+            cbs[i].onclick = function () {
+                var flag = true;
+                for (var j = 0; j < cbs.length; j++) {
+                    // flag = flag && cbs[j].checked;
+                    if (!cbs[j].checked) {
+                        flag = false;
+                        break;
+                    }
+                }
+                cbAll.checked = flag;
+            }
+        }
+    </script>
+</body>
+
+</html>
